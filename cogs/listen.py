@@ -1,5 +1,4 @@
 from discord.ext import commands
-import datetime
 import configparser
 import sys
 sys.path.append("..")
@@ -15,10 +14,6 @@ class CogListen(commands.Cog):
         config.read('cogs.ini')
 
         self.leverId = config.getint('id', 'lever_id')
-        self.memId = config.getint('id', 'mem_id')
-        self.coopId = config.getint('id', 'mem_coop_id')
-        self.shootId = config.getint('id', 'mem_shoot_id')
-        self.arpgId = config.getint('id', 'mem_arpg_id')
 
         self.systemId = config.getint('id', 'system_id')
         self.logovoId = config.getint('id', 'guild_id')
@@ -30,13 +25,6 @@ class CogListen(commands.Cog):
         self.poe = None
 
 
-    @commands.Cog.listener()
-    async def on_message(self, message):
-        if message.channel.id in [self.memId, self.coopId, self.shootId, self.arpgId] :
-            print(f"{datetime.datetime.now()}: new picture in the mems")
-            await message.add_reaction('👍')
-            await message.add_reaction('👎')
-    
     @commands.command()
     async def setId(self, ctx, id : int):
         self.leverId = id
