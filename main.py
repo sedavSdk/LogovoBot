@@ -2,7 +2,6 @@ import discord
 from discord.ext import commands
 from decouple import Config, RepositoryEnv
 import os, sys
-from utils import is_connected
 import importlib
 import configparser
 
